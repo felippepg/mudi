@@ -24,7 +24,7 @@ public class Pedido {
 	private LocalDate dataEntrega;
 	
 	@Enumerated(EnumType.STRING)
-	private StatusPedido statusPedido;
+	private StatusPedido status;
 
 	public String getNomePedido() {
 		return nomePedido;
@@ -40,6 +40,14 @@ public class Pedido {
 
 	public void setValorProduto(BigDecimal valorProduto) {
 		this.valorProduto = valorProduto;
+	}
+
+	public StatusPedido getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
 	}
 
 	public String getUrlProduto() {
