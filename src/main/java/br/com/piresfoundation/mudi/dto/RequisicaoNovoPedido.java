@@ -6,6 +6,7 @@ import br.com.piresfoundation.mudi.models.Pedido;
 
 public class RequisicaoNovoPedido {
 	
+	//Anotação que indica que não pode ser nulo ou vazio
 	@NotBlank
 	private String nomeProduto;
 	
