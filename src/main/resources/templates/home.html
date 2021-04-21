@@ -30,11 +30,11 @@
 						<div class="row">
 							<div class="col-md-6">
 								Valor:
-								<spam th:text="${pedido.valorProduto}"> 0</spam>
+								<spam th:if="${pedido.valorProduto} != null" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorProduto, 0, 'COMMA', 2, 'POINT')}"> 0</spam>
 							</div>
 							<div class="col-md-6">
 								Data da entrega
-								<spam th:text="${pedido.dataEntrega}">01/01/2001</spam>
+								<spam th:text="${#temporals.format(pedido.dataEntrega, 'dd-MMM-yyyy')}">01/01/2001</spam>
 							</div>
 						</div>
 						<div>Produto</div>

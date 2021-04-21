@@ -3,6 +3,7 @@ package br.com.piresfoundation.mudi.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,7 +19,10 @@ public class Pedido {
 	
 	private String nomePedido;
 	private BigDecimal valorProduto;
+	
+	@Column(columnDefinition = "TEXT")
 	private String urlProduto;
+	
 	private String descricao;
 	private String urlImagem;
 	private LocalDate dataEntrega;
