@@ -16,30 +16,30 @@ import br.com.piresfoundation.mudi.models.StatusPedido;
 import br.com.piresfoundation.mudi.repository.PedidoRepository;
 
 @Controller
-@RequestMapping("/home")
-public class HomeController {
+@RequestMapping("/usuario")
+public class UsuarioController {
 
 	@Autowired
 	private PedidoRepository repository;
 
-	@GetMapping
-	public String home(Model model) {
-		List<Pedido> pedidos = repository.findAll();
+	@GetMapping("pedidos")
+	public String home(Model model, Principal principal) {
+		List<Pedido> pedidos = repository.findAllByUser(principal.getName());
 
 		model.addAttribute("pedidos", pedidos);
-		return "home";
+		return "usuario/home";
 	}
 
-	@GetMapping("/{status}")
-	public String byStatus(@PathVariable String status, Model model) {
-		List<Pedido> pedidos = repository.findByStatus(StatusPedido.valueOf(status.toUpperCase()));
+	@GetMapping("pedidos/{status}")
+	public String byStatus(@PathVariable String status, Model model, Principal principal) {
+		List<Pedido> pedidos = repository.findByStatusAndUsuario(StatusPedido.valueOf(status.toUpperCase()), principal.getName());
 		model.addAttribute("pedidos", pedidos);
 		model.addAttribute("status", status);
-		return "home";
+		return "usuario/home";
 	}
-	
+
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String error() {
-		return "redirect:/home";
+		return "redirect:/usuario//home";
 	}
 }
